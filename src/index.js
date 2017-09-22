@@ -6,8 +6,12 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore} from 'redux';
 import rootReducer from './store/rootReducer';
 import {Provider} from 'react-redux';
+import configureStore from './store/configureStore';
+import {loadCompras} from './actions/comprasActions';
 
-const store = createStore(rootReducer);
+const store = configureStore();
+store.dispatch(loadCompras());
+
 
 const WithProvider = () => (
 		<Provider store={store}>

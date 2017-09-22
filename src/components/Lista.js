@@ -29,7 +29,7 @@ class Lista extends React.Component{
       comprado:false
     }
     e.preventDefault();
-    this.props.comprasActions.addCompra(item);
+    this.props.comprasActions.saveCompra(item);
     this.setState({nuevoItem:''});
    
   };
@@ -37,7 +37,7 @@ class Lista extends React.Component{
   deleteCompra = (i) => {
     if(window.confirm("Estas seguro de borrarlo?")){
       //store.dispatch({type:"DELETE_COMPRA", compra:i});
-      this.props.comprasActions.deleteCompra(i);
+      this.props.comprasActions.removeCompra(i);
     }
     
   };
@@ -77,7 +77,7 @@ class Lista extends React.Component{
      {items.map(i=>
       <div key={i.key}>
       <span
-      onClick={()=>this.props.comprasActions.checkComprado(i)}
+      onClick={()=>this.props.comprasActions.toggleCompra(i)}
       style={{cursor:'pointer'}}
       className={i.comprado?"tachado":null}
        >{i.text}</span>
@@ -126,6 +126,7 @@ class Lista extends React.Component{
 
 
 function mapStateToProps(state, ownProps){
+  console.log("orale putita: ", state);
   return {
     compras:state.compras,
     filtro:state.filtro

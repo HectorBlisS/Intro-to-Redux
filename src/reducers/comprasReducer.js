@@ -1,5 +1,8 @@
 export default function comprasReducer(state = [], action){
   switch(action.type){
+    case "LOAD_COMPRAS_SUCCESS":
+      return action.compras;
+
     case "ADD_COMPRA":
       //return state.push(action.compra);
       return [...state, action.compra];
